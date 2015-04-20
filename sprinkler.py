@@ -31,12 +31,12 @@ try:
   
     currentTime = int(time.time() * FlowMeter.MS_IN_A_SECOND)
 
-    if (fm.thisEvent > 0.05 and currentTime - fm.lastClick > 1000): # 1 second of inactivity indicates a change of a "zone"
-      print "Zone " + str(zone) + " just used " + fm.getFormattedThisEvent()
+    if (fm.thisEvent > 0.05 and currentTime - fm.lastClick > 2000): # 1 second of inactivity indicates a change of a "zone"
+      print "Zone " + str(zone) + " just used " + fm.getFormattedThisEvent() + "(" + fm.getFormattedHertz() +")"
       fm.thisEvent = 0.0
       zone += 1
 
-    if (fm.totalEvent > 0 and currentTime - fm.lastClick > 5000): # 5 second of inactivity indicates a full cycle is complete
+    if (fm.totalEvent > 0 and currentTime - fm.lastClick > 10000): # 5 second of inactivity indicates a full cycle is complete
       print "This Cycle used: " + fm.getFormattedTotalEvent()
       zone = 1
       fm.totalEvent = 0
